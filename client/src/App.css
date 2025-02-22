@@ -1,0 +1,54 @@
+.App { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  background-color: #161f1a;
+}
+.navbar {
+  display: flex;                /* Use flexbox to align the links horizontally */
+  justify-content: space-around; /* Distribute the links evenly */
+  align-items: center;          /* Vertically center the links */
+  background-color: #00a846;       /* Background color for the navbar */
+  padding: 10px 0;              /* Padding for the top and bottom */
+  position: fixed;              /* Make the navbar fixed at the top */
+  top: 0;                       /* Align it at the top of the page */
+  width: 100%;                  /* Full width of the page */
+  z-index: 1000;                /* Make sure it stays on top of other content */
+}
+
+/* Style for each link */
+.navbar a {
+  color: white;                 /* White text color */
+  text-decoration: none;        /* Remove underline from the links */
+  font-size: 16px;              /* Set font size */
+  padding: 10px 15px;           /* Add padding to make the links more clickable */
+  border-radius: 4px;           /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for background change */
+}
+
+/* Hover effect for links */
+.navbar a:hover {
+  background-color: #000000;    /* Darken the background color when hovering */
+}
+
+
+
+
+#registrationforminput {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Focused state for inputs */
+#registrationforminput:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
