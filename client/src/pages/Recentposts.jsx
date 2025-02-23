@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {useState, useEffect} from 'react'
-import '../css/RecentPosts.css'
 import {useNavigate} from 'react-router-dom'
+
 
 export default function Recentposts(){
     const [listOfPosts, setListOfPosts] = useState([])
@@ -16,13 +16,15 @@ export default function Recentposts(){
     
     
     return(
-        <div>
+        <div className = "recent-posts">
             {listOfPosts.slice().reverse().map((value, key) =>{
                 return (
-                    <div className="post" onClick = {() => {navigate(`/post/${value.id}`)}} >
+                    
+                    <div key = {value.id} className="post" onClick = {() => {navigate(`/post/${value.id}`)}} >
                     <div className="body">{value.postbody}</div>
                     <div className="footer">{value.username}</div>
                     </div>
+                    
                 )
             })}
         </div>

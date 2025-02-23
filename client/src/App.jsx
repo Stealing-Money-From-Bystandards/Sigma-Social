@@ -16,6 +16,8 @@ import axios from 'axios'
 
 function App() {
   const [authState, setAuthState] = useState(false);
+  const [isOpen, setIsOpen] =useState(true)
+
 
   useEffect(() => {
     axios.get('http://localhost:3001/users/auth',{headers: {
@@ -35,32 +37,39 @@ function App() {
   }
 
   return (
-    <div className = "app">
+    
+    <div className = "container">
       <AuthContext.Provider value = {{authState, setAuthState}}>
       <Router>
+        {isOpen && (
         <div className = "navbar">
-          <Link to= '/'>HomePage</Link>
-          <Link to= '/recentposts'>RecentPosts</Link>
-          {authState && (
-          <>
-          <Link to= '/createpost'>Create Post</Link>
-          <Link to = '/myposts'>My Posts</Link>
-          </>
-          )}
-          {!authState && (
-          <Link to= '/login'>Login</Link>
-          )}
-          <Link to= '/search'>Search</Link>
-          {!authState && (
-          <Link to= '/register'>Register</Link>
-          )}
-          {authState && (
-          <>
-          <Link to= '/' onClick = {logout}>Click to Logout</Link>
-          </>
-          )}
-        </div>
-        <div className="App">
+            <button className="toggle-btn" onClick={() => setIsOpen(false)}>❌</button>
+            <Link to= '/'>HomePage</Link>
+            <Link to= '/recentposts'>RecentPosts</Link>
+            {authState && (
+            <>
+            <Link to= '/createpost'>Create Post</Link>
+            <Link to = '/myposts'>My Posts</Link>
+            </>
+            )}
+            {!authState && (
+            <Link to= '/login'>Login</Link>
+            )}
+            <Link to= '/search'>Search</Link>
+            {!authState && (
+            <Link to= '/register'>Register</Link>
+            )}
+            {authState && (
+            <>
+            <Link to= '/' onClick = {logout}>Click to Logout</Link>
+            </>
+            )}
+        </div> 
+        )}
+
+        <div className={`main-content ${isOpen ? "shifted" : ""}`}></div>
+        <div className={`main-content ${isOpen ? "shifted" : ""}`}>
+        {!isOpen && <button className="toggle-btn" onClick={() => setIsOpen(true)}>☰</button>}
           <Routes>  
             <Route path = '/' element = {<Homepage/>}/>
             <Route path = '/recentposts' element = {<Recentposts/>}/>
@@ -71,10 +80,12 @@ function App() {
             <Route path = '/myposts' element = {<MyPosts/>}/>
             <Route path = '/post/:id' element = {<Post/>}/>
           </Routes>
-        </div> 
+        </div>
+        <div className={`main-content ${isOpen ? "shifted" : ""}`}></div>
       </Router>
       </AuthContext.Provider>
     </div>
+      
   )
 }
 

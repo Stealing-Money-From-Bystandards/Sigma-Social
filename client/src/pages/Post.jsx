@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
-import '../css/RecentPosts.css'
 import '../helpers/IsMyPost'
 import {IsMyPost} from '../helpers/IsMyPost'
 import {useNavigate} from 'react-router-dom'
@@ -53,8 +52,9 @@ export default function Post(){
                 <div className = "post" id ="individual">
                 <div className = "body">{postObject.postbody}</div>
                 <div className = "footer">{postObject.username}</div>
+                <button type="submit" className="deletebtn" onClick = {() => {deletePost(postObject.id)}}>Delete Post</button>
                 </div>
-                <button type="submit" className="submit-btn" onClick = {() => {deletePost(postObject.id)}}>Delete Post</button>
+                
             </>
             )}
             </IsMyPost.Provider>
