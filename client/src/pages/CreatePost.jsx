@@ -21,6 +21,8 @@ export default function CreatePost(){
         ).then((response) => {
             if(response.data.error){
                 console.log(response.data.error)
+            } else{
+                navigate('/myposts')
             }
         })
     };

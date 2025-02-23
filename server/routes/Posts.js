@@ -23,6 +23,33 @@ router.get('/', async (req,res) => {
     res.json(listOfPosts)
 }) 
 
+router.delete('/:id', validateToken, async (req,res) =>{
+    const id = req.params.id
+    const loggedInUser = req.user.username
+
+    try {
+        const post = await Posts.findByPk(id);
+
+        if (!post) {
+            return res.status(404).json({ message: "Post not found" });
+        }
+
+        if (post.username !== loggedInUser) {
+            return res.status(403).json({ message: "Unauthorized to delete this post" });
+        }
+
+        await Posts.destroy({where: {id: id}})
+
+        res.json({message: "post deleted successfully"})
+
+        }catch(error){
+        console.error(error)
+        }
+
+
+})
+
+
 router.get('/byid/:id', async (req,res)=>{
     const id = req.params.id
     const post = await Posts.findByPk(id)

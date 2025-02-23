@@ -4,13 +4,13 @@ import {useParams} from 'react-router-dom'
 import '../css/RecentPosts.css'
 import '../helpers/IsMyPost'
 import {IsMyPost} from '../helpers/IsMyPost'
-
+import {useNavigate} from 'react-router-dom'
 
 export default function Post(){
     let {id} = useParams()
     const [postObject, setPostObject] = useState({})
     const [authState, setAuthState] = useState(false);
-
+    const navigate = useNavigate()
 
     useEffect(()=> {
         axios.get(`http://localhost:3001/posts/byid/${id}`).then((response) => {
@@ -23,7 +23,7 @@ export default function Post(){
         })
     },[id])
 
-    const deletePost = async (Id) => {
+    const deletePost = async (id) => {
         try {
             const response = await axios.delete(`http://localhost:3001/posts/${id}`,{
                 headers:{
@@ -31,8 +31,9 @@ export default function Post(){
                 }
             })
 
-        } catch(err){
-
+            navigate('/myposts')
+        } catch(error){
+            console.error("error")
         }
     }
 
@@ -53,7 +54,7 @@ export default function Post(){
                 <div className = "body">{postObject.postbody}</div>
                 <div className = "footer">{postObject.username}</div>
                 </div>
-                <button type="submit" className="submit-btn" onClick = {deletePost}>Delete Post</button>
+                <button type="submit" className="submit-btn" onClick = {() => {deletePost(postObject.id)}}>Delete Post</button>
             </>
             )}
             </IsMyPost.Provider>
