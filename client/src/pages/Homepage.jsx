@@ -1,8 +1,9 @@
 export default function Homepage(){
     return(
-        <div>
-            <h1>Home Page</h1>
-            <p>This will be the Home page of the application that contains info about what this app is. </p>
+        <div className = "home-page">
+            <img src="../public/emblem.jpg" alt="emblem for barebones social" />
+            <h1>BareBones Social</h1>
+            <p>This app has just about the bare minimum to be called a social app... for now </p>
         </div>
     )
 

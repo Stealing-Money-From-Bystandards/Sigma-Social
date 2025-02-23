@@ -43,7 +43,8 @@ function App() {
       <Router>
         {isOpen && (
         <div className = "navbar">
-            <button className="toggle-btn" onClick={() => setIsOpen(false)}>❌</button>
+            <button className="toggle-btn" onClick={() => setIsOpen(false)}>
+              <img src="../public/x_bones.png" alt="Close" /></button>
             <Link to= '/'>HomePage</Link>
             <Link to= '/recentposts'>RecentPosts</Link>
             {authState && (
@@ -67,7 +68,7 @@ function App() {
         </div> 
         )}
 
-        <div className={`main-content ${isOpen ? "shifted" : ""}`}></div>
+
         <div className={`main-content ${isOpen ? "shifted" : ""}`}>
         {!isOpen && <button className="toggle-btn" onClick={() => setIsOpen(true)}>☰</button>}
           <Routes>  
@@ -81,7 +82,6 @@ function App() {
             <Route path = '/post/:id' element = {<Post/>}/>
           </Routes>
         </div>
-        <div className={`main-content ${isOpen ? "shifted" : ""}`}></div>
       </Router>
       </AuthContext.Provider>
     </div>

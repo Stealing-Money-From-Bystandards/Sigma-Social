@@ -16,7 +16,7 @@ export default function Recentposts(){
     
     
     return(
-        <div className = "recent-posts">
+        <div>
             {listOfPosts.slice().reverse().map((value, key) =>{
                 return (
                     
